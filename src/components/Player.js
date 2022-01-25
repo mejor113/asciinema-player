@@ -72,6 +72,10 @@ export default props => {
 
     onFinish: () => {
       setState('state', 'paused');
+
+      if (typeof props.onFinish === 'function') {
+        props.onFinish();
+      }
     }
   });
 
