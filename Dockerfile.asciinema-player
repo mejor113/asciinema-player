@@ -1,0 +1,14 @@
+# Use a base image with a simple HTTP server
+FROM nginx:alpine
+
+# Set the working directory in the container
+WORKDIR /usr/share/nginx/html
+
+# Copy the static content into the container
+COPY resources/public/* .
+
+# Expose port 80 for the HTTP server
+EXPOSE 80
+
+# Start Nginx and keep it running in the foreground
+CMD ["nginx", "-g", "daemon off;"]

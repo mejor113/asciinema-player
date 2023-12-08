@@ -1,0 +1,28 @@
+namespace: asciinema-player
+
+asciinema-player:
+  defines: runnable
+  metadata:
+    name: asciinema-player
+    description: A web player for terminal session recordings, can be served statically.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    asciinema-player:
+      image: env-3531.registry.local/asciinema-player:cljs-c09126b
+      build: .
+      dockerfile: Dockerfile.asciinema-player
+  services:
+    http:
+      description: HTTP server port
+      container: asciinema-player
+      port: 80
+      host-port: 80
+      publish: true
+      protocol: tcp
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - asciinema-player/asciinema-player
